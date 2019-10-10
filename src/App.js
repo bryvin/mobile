@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text } from "react-native";
 import { Client } from 'bugsnag-react-native';
 import { createStackNavigator, createAppContainer, createDrawerNavigator, DrawerActions, NavigationActions } from "react-navigation";
+import { useDarkModeContext, eventEmitter as darkModeEventEmitter } from 'react-native-dark-mode'
 
 import KeysManager from './lib/keysManager'
 import StyleKit from "./style/StyleKit"
@@ -140,49 +141,46 @@ const DrawerStack = createDrawerNavigator({
 
 const AppContainer = createAppContainer(DrawerStack);
 
-export default class App extends Component {
+export default function App(props) {
+  const [isReady, setIsReady] = useState(false);
 
-  constructor(props) {
-    super(props);
+  // initialize StyleKit with the status of Dark Mode on the user's device
+  StyleKit.get().setModeTo(useDarkModeContext());
+  
+  // if user switches light/dark mode while on the app, update theme accordingly
+  darkModeEventEmitter.on('currentModeChanged', newMode => {
+    StyleKit.get().setModeTo(newMode);
+    StyleKit.get().activateThemeForCurrentMode();
+  })
 
-    KeysManager.get().registerAccountRelatedStorageKeys(["options"]);
+  KeysManager.get().registerAccountRelatedStorageKeys(["options"]);
 
-    // Initialize iOS review manager. Will automatically handle requesting review logic.
-    ReviewManager.initialize();
+  // Initialize iOS review manager. Will automatically handle requesting review logic.
+  ReviewManager.initialize();
 
-    PrivilegesManager.get().loadPrivileges();
-    MigrationManager.get().load();
+  PrivilegesManager.get().loadPrivileges();
+  MigrationManager.get().load();
 
-    // Listen to sign out event
-    this.authEventHandler = Auth.get().addEventHandler(async (event) => {
-      if(event == SFAuthManager.DidSignOutEvent) {
-        ModelManager.get().handleSignout();
-        await Sync.get().handleSignout();
-      }
-    });
+  // Listen to sign out event
+  const authEventHandler = Auth.get().addEventHandler(async (event) => {
+    if(event == SFAuthManager.DidSignOutEvent) {
+      ModelManager.get().handleSignout();
+      await Sync.get().handleSignout();
+    }
+  });
+  
+  loadInitialData();
 
-    this.state = {ready: false};
-    this.loadInitialData();
-  }
-
-  /*
-    We initially didn't expect App to ever unmount. However, on Android, if you are in the root screen,
-    and press the physical back button, then strangely, App unmounts, but other components, like Notes, do not.
-    We've remedied this by modifiying Android back button behavior natively to background instead of quit, but we keep this below anyway.
-   */
-  componentWillUnmount() {
-    Auth.get().removeEventHandler(this.authEventHandler);
-  }
-
-  async loadInitialData() {
+  async function loadInitialData() {
     await StyleKit.get().resolveInitialTheme();
     await KeysManager.get().loadInitialData();
-
+    
     let ready = () => {
       ApplicationState.get().receiveApplicationStartEvent();
-      this.setState({ready: true});
+      
+      setIsReady(true);
     }
-
+    
     if(KeysManager.get().isFirstRun()) {
       KeysManager.get().handleFirstRun().then(ready);
     } else {
@@ -190,13 +188,16 @@ export default class App extends Component {
     }
   }
 
-  render() {
-    if(!this.state.ready) {
-      return null;
-    }
+  useEffect(() => {
+    return () => {
+      /*
+        We initially didn't expect App to ever unmount. However, on Android, if you are in the root screen,
+        and press the physical back button, then strangely, App unmounts, but other components, like Notes, do not.
+        We've remedied this by modifiying Android back button behavior natively to background instead of quit, but we keep this below anyway.
+      */
+      Auth.get().removeEventHandler(authEventHandler);
+    };
+  });
 
-    return (
-      <AppContainer /* persistenceKey="if-you-want-it" */ />
-    )
-  }
+  return !isReady ? null : (<AppContainer /* persistenceKey="if-you-want-it" */ />);
 }

@@ -20,6 +20,7 @@
     "moment": "^2.23.0",
     "react": "16.8.3",
     "react-native": "0.59.10",
+    "react-native-dark-mode": "^0.1.2",
     "react-native-file-viewer": "^1.0.10",
     "react-native-fs": "^2.13.3",
     "react-native-gesture-handler": "^1.0.12",
@@ -31,8 +32,8 @@
     "react-navigation-header-buttons": "^2.1.1",
     "regenerator": "^0.13.3",
     "snjs": "0.2.8",
-    "standard-file-js": "0.3.63",
-    "stacktrace-parser": "0.1.4"
+    "stacktrace-parser": "0.1.4",
+    "standard-file-js": "0.3.63"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

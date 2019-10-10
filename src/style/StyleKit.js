@@ -43,6 +43,9 @@ export default class StyleKit {
           this.activeTheme.setMobileActive(true);
         }
       }
+
+      // once themes have synced, activate the theme for our current mode
+      this.activateThemeForCurrentMode();
     });
 
     this.signoutObserver = Auth.get().addEventHandler((event) => {
@@ -65,6 +68,49 @@ export default class StyleKit {
     for(var observer of this.themeChangeObservers) {
       observer();
     }
+  }
+
+  getCurrentDarkMode() {
+    return this.currentDarkMode === "dark";
+  }
+  
+  setModeTo(mode) {
+    // 'light' or 'dark'
+    this.currentDarkMode = mode;
+  }
+
+  storageKeyForCurrentMode() {
+    return this.getCurrentDarkMode() ? "isMobileDarkTheme" : "isMobileLightTheme";
+  }
+
+  static storageKeyForMode(mode) {
+    return mode === "dark" ? "isMobileDarkTheme" : "isMobileLightTheme";
+  }
+
+  assignThemeForMode(theme, mode) {
+    const storageKey = StyleKit.storageKeyForMode(mode);
+
+    // unset the themes that were previously set for this key
+    // we loop instead of finding the specific theme with the matching mode incase of any sync
+    // conflicts happen to assign 2 themes as the theme for a specific mode
+    _.forEach(this.themes(), _theme => {
+      if(_theme.content[storageKey]) {
+        _theme.content[storageKey] = false;
+        _theme.setDirty(true);
+      }
+    });
+
+    // assign this new theme to this mode
+    theme.content[storageKey] = true;
+    theme.setDirty(true);
+
+    // if we're change the theme for a specific mode and we're currently on that mode, then set this theme as active
+    if(this.currentDarkMode == mode && this.activeTheme.uuid != theme.uuid) {
+      this.setActiveTheme(theme);
+      theme.setMobileActive(true);
+    }
+
+    Sync.get().sync();
   }
 
   // When downloading an external theme, we can't depend on it having all the variables present.
@@ -122,6 +168,7 @@ export default class StyleKit {
       } else {
         theme = this.systemThemes[0];
       }
+
       theme.setMobileActive(true);
       this.setActiveTheme(theme);
     }
@@ -272,6 +319,9 @@ export default class StyleKit {
     }
 
     var performActivation = async () => {
+      // assign this as the preferential theme for current light/dark mode the user is using
+      this.assignThemeForMode(theme, this.currentDarkMode);
+
       this.setActiveTheme(theme);
       theme.setMobileActive(true);
 
@@ -312,6 +362,26 @@ export default class StyleKit {
     } else {
       performActivation();
     }
+  }
+
+  activateThemeForCurrentMode() {
+    if(this.themeChange) clearTimeout(this.themeChange);
+    this.themeChange = setTimeout(() => {
+      const storageKey = this.storageKeyForCurrentMode();
+      
+      let matchingTheme = this.themes().find((candidate) => candidate.content[storageKey]);
+  
+      if(matchingTheme && matchingTheme.uuid === this.activeTheme.uuid) {
+        // Found a match and it's already active, no need to switch
+        return;
+      } else if(!matchingTheme && this.activeTheme) {
+        // No matching theme found, set currently active theme as the default for this mode (light/dark)
+        this.assignThemeForMode(this.activeTheme, this.currentDarkMode);
+      } else {
+        // if a matching theme for user preference was found, switch to that theme
+        this.activateTheme(matchingTheme);
+      }
+    }, 300);
   }
 
   async downloadThemeAndReload(theme) {

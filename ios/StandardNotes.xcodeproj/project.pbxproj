@@ -43,6 +43,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6C1915C4DE9040A9BB17CFBB /* libRNStoreReview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB6F6B9BC7144FCB2C08D40 /* libRNStoreReview.a */; };
 		7A0B269BD1714EA79E486BAE /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1009A2994551440E819E2CE6 /* libRNCAsyncStorage.a */; };
+		819748E335C34BB58367F464 /* libRNDarkMode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9DAB6F0781424EA6CB2EC9 /* libRNDarkMode.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		840E2D03A7CE4291AA2D3383 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 131C577CAE5F4B7D8CFF1197 /* AntDesign.ttf */; };
 		965031D980094619B7DBA0FD /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F569402A90047A59845394A /* Ionicons.ttf */; };
@@ -240,6 +241,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
+		};
+		93CB2A8B234EB3E1000BCBE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9B147D555A94C8E82EB35FA /* RNDarkMode.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6E20834822AADA1000CC4732;
+			remoteInfo = RNDarkMode;
 		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -507,6 +515,7 @@
 		19A39FBB53A3465B81022E02 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
 		1F569402A90047A59845394A /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		2416263A135F439AA3C5F9D2 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		2A9DAB6F0781424EA6CB2EC9 /* libRNDarkMode.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDarkMode.a; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* StandardNotes-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StandardNotes-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* StandardNotes-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StandardNotes-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FAF1266E8404686B7F36870 /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
@@ -543,6 +552,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		EF2E9E34ADA441EDB4CE8370 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		EFD3F9197A5F41C0904D7E60 /* libBugsnagReactNative.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBugsnagReactNative.a; sourceTree = "<group>"; };
+		F9B147D555A94C8E82EB35FA /* RNDarkMode.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDarkMode.xcodeproj; path = "../node_modules/react-native-dark-mode/ios/RNDarkMode.xcodeproj"; sourceTree = "<group>"; };
 		FF655164AD874250A8F6E20E /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -589,6 +599,7 @@
 				9E1F5D0FE7C441D685DAEEAA /* libRNFileViewer.a in Frameworks */,
 				4C4C0C80E5254E16BA086A86 /* libRNCWebView.a in Frameworks */,
 				7A0B269BD1714EA79E486BAE /* libRNCAsyncStorage.a in Frameworks */,
+				819748E335C34BB58367F464 /* libRNDarkMode.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,6 +818,7 @@
 				645E3D9167344C3E81B7223C /* RNFileViewer.xcodeproj */,
 				EC178A0479CE4154896293C3 /* RNCWebView.xcodeproj */,
 				FF655164AD874250A8F6E20E /* RNCAsyncStorage.xcodeproj */,
+				F9B147D555A94C8E82EB35FA /* RNDarkMode.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -843,6 +855,14 @@
 				00E356EE1AD99517003FC87E /* StandardNotesTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* StandardNotes-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* StandardNotes-tvOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		93CB2A88234EB3E1000BCBE4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				93CB2A8C234EB3E1000BCBE4 /* libRNDarkMode.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -959,6 +979,7 @@
 				4449457EB3FC4387810027F1 /* libRNCWebView.a */,
 				1009A2994551440E819E2CE6 /* libRNCAsyncStorage.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				2A9DAB6F0781424EA6CB2EC9 /* libRNDarkMode.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1196,6 +1217,10 @@
 					ProjectRef = EC178A0479CE4154896293C3 /* RNCWebView.xcodeproj */;
 				},
 				{
+					ProductGroup = 93CB2A88234EB3E1000BCBE4 /* Products */;
+					ProjectRef = F9B147D555A94C8E82EB35FA /* RNDarkMode.xcodeproj */;
+				},
+				{
 					ProductGroup = CDEBDDB721E044BD00333D77 /* Products */;
 					ProjectRef = 645E3D9167344C3E81B7223C /* RNFileViewer.xcodeproj */;
 				},
@@ -1398,6 +1423,13 @@
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		93CB2A8C234EB3E1000BCBE4 /* libRNDarkMode.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDarkMode.a;
+			remoteRef = 93CB2A8B234EB3E1000BCBE4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {
@@ -1787,12 +1819,14 @@
 					"$(SRCROOT)/../node_modules/react-native-file-viewer/ios",
 					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-dark-mode/ios",
 				);
 				INFOPLIST_FILE = StandardNotesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1822,12 +1856,14 @@
 					"$(SRCROOT)/../node_modules/react-native-file-viewer/ios",
 					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-dark-mode/ios",
 				);
 				INFOPLIST_FILE = StandardNotesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1862,6 +1898,7 @@
 					"$(SRCROOT)/../node_modules/react-native-file-viewer/ios",
 					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-dark-mode/ios",
 				);
 				INFOPLIST_FILE = StandardNotes/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1902,6 +1939,7 @@
 					"$(SRCROOT)/../node_modules/react-native-file-viewer/ios",
 					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-dark-mode/ios",
 				);
 				INFOPLIST_FILE = StandardNotes/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1944,11 +1982,13 @@
 					"$(SRCROOT)/../node_modules/react-native-file-viewer/ios",
 					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-dark-mode/ios",
 				);
 				INFOPLIST_FILE = "StandardNotes-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1987,11 +2027,13 @@
 					"$(SRCROOT)/../node_modules/react-native-file-viewer/ios",
 					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-dark-mode/ios",
 				);
 				INFOPLIST_FILE = "StandardNotes-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -2024,6 +2066,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.StandardNotes-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2048,6 +2091,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
