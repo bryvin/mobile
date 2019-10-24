@@ -1,6 +1,8 @@
 package com.standardnotes;
 
 import android.app.Application;
+import android.content.Context;
+import com.facebook.react.PackageList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +21,6 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
-import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
 import com.chirag.RNMail.RNMail;
@@ -33,7 +34,7 @@ import com.kristiansorens.flagsecure.FlagSecurePackage;
 import com.bugsnag.BugsnagReactNative;
 import org.standardnotes.SNReactNative.SNReactNativePackage;
 
-import java.util.Arrays;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 
@@ -47,23 +48,26 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-        new MainReactPackage(),
-        new AsyncStoragePackage(),
-        new RNCWebViewPackage(),
-        new RNFileViewerPackage(),
-        new RNFSPackage(),
-        new RNGestureHandlerPackage(),
-        BugsnagReactNative.getPackage(),
-        new KeychainPackage(),
-        new VectorIconsPackage(),
-        new RCTAesPackage(),
-        new RNMail(),
-        new ReactNativeFingerprintScannerPackage(),
-        new SNTextViewPackage(),
-        new FlagSecurePackage(),
-        new SNReactNativePackage()
-      );
+      @SuppressWarnings("UnnecessaryLocalVariable")
+      List<ReactPackage> packages = new PackageList(this).getPackages();
+
+      packages.add(new MainReactPackage());
+      packages.add(new AsyncStoragePackage());
+      packages.add(new RNCWebViewPackage());
+      packages.add(new RNFileViewerPackage());
+      packages.add(new RNFSPackage());
+      packages.add(new RNGestureHandlerPackage());
+      packages.add(BugsnagReactNative.getPackage());
+      packages.add(new KeychainPackage());
+      packages.add(new VectorIconsPackage());
+      packages.add(new RCTAesPackage());
+      packages.add(new RNMail());
+      packages.add(new ReactNativeFingerprintScannerPackage());
+      packages.add(new SNTextViewPackage());
+      packages.add(new FlagSecurePackage());
+      packages.add(new SNReactNativePackage());
+
+      return packages;
     }
 
     @Override
@@ -82,6 +86,8 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
 
     SoLoader.init(this, /* native exopackage */ false);
+
+    initializeFlipper(this); // Remove this line if you don't want Flipper enabled
 
     registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
       @Override
@@ -122,6 +128,32 @@ public class MainApplication extends Application implements ReactApplication {
 
     if(!BuildConfig.DEBUG) {
       BugsnagReactNative.start(this);
+    }
+  }
+
+  /**
+   * Loads Flipper in React Native templates.
+   *
+   * @param context
+   */
+  private static void initializeFlipper(Context context) {
+    if (BuildConfig.DEBUG) {
+      try {
+        /*
+         We use reflection here to pick up the class that initializes Flipper,
+        since Flipper library is not available in release mode
+        */
+        Class<?> aClass = Class.forName("com.facebook.flipper.ReactNativeFlipper");
+        aClass.getMethod("initializeFlipper", Context.class).invoke(null, context);
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      } catch (NoSuchMethodException e) {
+        e.printStackTrace();
+      } catch (IllegalAccessException e) {
+        e.printStackTrace();
+      } catch (InvocationTargetException e) {
+        e.printStackTrace();
+      }
     }
   }
 }
